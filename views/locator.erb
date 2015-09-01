@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <script src="/js/distance.js"></script>
-    <title></title>
-  </head>
-  <body>
+<form id="location_form" action="/" method="post">
+  <div id="form-group">
+      <label>Current Location</label>
+      <input type="text" name="source" id="source" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-success">Calculate distances</button>
+</form>
 
-    <div id="inputs">
-        <label>Source</label><input type="text" name="source" id="source" />
-        <label>Destination</label><input type="text" name="dest" id="dest" />
-      <p><button type="button" onclick="calculateDistances();">Calculate
-              distances</button></p>
-     </div>
-    <div id="outputDiv"></div>
-
-  </body>
-</html>
+<% if @sorted_shelters.any?() %>
+  <ul>
+    <% @sorted_shelters.each do |shelter| %>
+      <li name="shelters[]" id="shelter_<%= shelter %>"><%= shelter[0].fetch(:name) %> is <%= shelter[1] %> miles away!</li>
+    <% end %>
+  </ul>
+<% end %>
