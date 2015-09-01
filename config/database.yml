@@ -1,0 +1,6 @@
+development:
+  adapter: postgresql
+  database: shelter_resources_development
+test:
+  adapter: postgresql
+  database: shelter_resources_test
