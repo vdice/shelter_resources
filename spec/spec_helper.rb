@@ -18,9 +18,9 @@ RSpec.configure do |config|
     Resource.all.each do |task|
       task.destroy
     end
-    # Shelter.all.each do |task|
-    #   task.destroy
-    # end
+    Shelter.all.each do |task|
+      task.destroy
+    end
     Quantity.all.each do |task|
       task.destroy
     end

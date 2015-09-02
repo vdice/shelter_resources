@@ -1,15 +1,20 @@
-<form id="location_form" action="/" method="post">
+<form id="location_form" action="/locator" method="post">
   <div id="form-group">
       <label>Current Location</label>
       <input type="text" name="source" id="source" class="form-control">
+
+      <label>Resource Needed</label>
+      <select class="" name="">
+
+      </select>
   </div>
-  <button type="submit" class="btn btn-success">Calculate distances</button>
+  <button type="submit" class="btn btn-success">Find</button>
 </form>
 
 <% if @sorted_shelters.any?() %>
-  <ul>
+  <ul class="fa-ul">
     <% @sorted_shelters.each do |shelter| %>
-      <li name="shelters[]" id="shelter_<%= shelter %>"><%= shelter[0].fetch(:name) %> is <%= shelter[1] %> miles away!</li>
+      <li><i class="fa-li fa fa-home"></i><%= shelter[0].fetch(:name) %> <strong>at</strong> TODO <strong>is</strong> <%= shelter[1] %> miles away!</li>
     <% end %>
   </ul>
 <% end %>

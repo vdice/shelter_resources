@@ -5,13 +5,12 @@ Dir[File.dirname('__FILE__') + '/lib/*.rb'].each{ |file| require file }
 require('pry')
 require('geokit')
 
-get('/') do
-  # @shelters = ['providence park', 'forest park']
+get('/locator') do
   @sorted_shelters = []
   erb(:locator)
 end
 
-post('/') do
+post('/locator') do
   shelters = [{:name => 'providence park, portland'}, {:name => 'forest park, portland'}] #Shelter.all() #should be able to access .ll
 
   geocoded_source = Geokit::Geocoders::GoogleGeocoder3.geocode params.fetch('source')
