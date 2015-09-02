@@ -3,6 +3,7 @@ Bundler.require(:default)
 
 Dir[File.dirname('__FILE__') + '/lib/*.rb'].each{ |file| require file }
 require('pry')
+
 require('geokit')
 
 configure do
@@ -37,4 +38,8 @@ post('/locator') do
   @resources = Resource.all()
 
   erb(:locator)
+end
+
+get('/') do
+  erb :index
 end
