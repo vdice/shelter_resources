@@ -37,7 +37,6 @@ post('/locator') do
   end
 
   @sorted_shelters = with_distance.sort{|a, b| a[1] <=> b[1]}[0...5]
-  p @sorted_shelters
   @resources = Resource.all()
 
   erb(:locator)
