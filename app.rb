@@ -5,6 +5,7 @@ Dir[File.dirname('__FILE__') + '/lib/*.rb'].each{ |file| require file }
 require('pry')
 
 require('geokit')
+include(HelperMethod)
 
 configure do
   set :geocoder, Geokit::Geocoders::GoogleGeocoder3
@@ -51,5 +52,7 @@ get '/donate' do
 end
 
 get '/donates/hygine_products' do
+  @resource = Resource.find_by_name("hygine products")
+  @resource_name = HelperMethod.capitalize_multiple_words(@resource.name)
   erb :hygine_products
 end
