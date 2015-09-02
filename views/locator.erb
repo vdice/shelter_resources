@@ -4,17 +4,24 @@
       <input type="text" name="source" id="source" class="form-control">
 
       <label>Resource Needed</label>
-      <select class="" name="">
-
+      <select id="resource_select" name="resource_select" type="text" class="form-control">
+        <% @resources.each() do |resource| %>
+          <option id="option_<%= resource.id() %>" value="<%= resource.id() %>"><%= resource.name() %></option>
+        <% end %>
       </select>
   </div>
   <button type="submit" class="btn btn-success">Find</button>
 </form>
 
+<!-- TODO: Check to make sure the geocode for source is not empty/nil -->
+<!--       If it is, ask user to try again ?                          -->
+
 <% if @sorted_shelters.any?() %>
+<div id="shelter_listing">
   <ul class="fa-ul">
     <% @sorted_shelters.each do |shelter| %>
-      <li><i class="fa-li fa fa-home"></i><%= shelter[0].fetch(:name) %> <strong>at</strong> TODO <strong>is</strong> <%= shelter[1] %> miles away!</li>
+      <li><i class="fa-li fa fa-home"></i><%= shelter[0].name() %> <strong>at</strong> TODO <strong>is</strong> <%= shelter[1] %> miles away!</li>
     <% end %>
   </ul>
+</div>
 <% end %>

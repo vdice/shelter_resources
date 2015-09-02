@@ -5,23 +5,32 @@ Dir[File.dirname('__FILE__') + '/lib/*.rb'].each{ |file| require file }
 require('pry')
 require('geokit')
 
+configure do
+  set :geocoder, Geokit::Geocoders::GoogleGeocoder3
+  set :portland_bounds, settings.geocoder.geocode('Portland').suggested_bounds
+  set :bias, { :bias => settings.portland_bounds }
+end
+
 get('/locator') do
   @sorted_shelters = []
+  @resources = Resource.all()
   erb(:locator)
 end
 
 post('/locator') do
-  shelters = [{:name => 'providence park, portland'}, {:name => 'forest park, portland'}] #Shelter.all() #should be able to access .ll
+  shelters = Shelter.all()
 
-  geocoded_source = Geokit::Geocoders::GoogleGeocoder3.geocode params.fetch('source')
+  source = params.fetch('source')
+  geocoded_source = settings.geocoder.geocode(source, settings.bias)
 
   with_distance = []
   shelters.each do |shelter_obj|
-    ll = Geokit::Geocoders::GoogleGeocoder3.geocode shelter_obj.fetch(:name)
-    with_distance << [shelter_obj, (ll).distance_to(geocoded_source)]
+    geocoded_shelter = settings.geocoder.geocode(shelter_obj.location(), settings.bias)
+    with_distance << [shelter_obj, (geocoded_shelter).distance_to(geocoded_source)]
   end
 
   @sorted_shelters = with_distance.sort{|a, b| a[1] <=> b[1]}
+  @resources = Resource.all()
 
   erb(:locator)
 end

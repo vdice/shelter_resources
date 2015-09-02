@@ -13,5 +13,28 @@ describe('the locator functionality', {:type => :feature}) do
     end
   end
 
-  
+  describe('the post path') do
+    before(:each) do
+      @source = '208 SW 5th Ave, Portland, OR 97204'
+
+      @shelters = [{:shelter => Shelter.create({:name => 'Transition Projects', :location => '665 Northwest Hoyt Street, Portland, OR 97209'}),
+                    :expected_distance => '0.39438972788796417'},
+                   {:shelter => Shelter.create({:name => 'Portland Rescue Mission', :location => '111 West Burnside Street, Portland, OR 97209'}),
+                    :expected_distance => '0.21978449040906287'}]
+
+      @resource = Resource.create({:name => 'bed'})
+    end
+
+    it('returns a sorted list of shelters based on current location and resource needed') do
+      visit(@url)
+      fill_in('source', :with => @source)
+      find('#resource_select').find("#option_#{@resource.id()}").select_option
+      click_button('Find')
+      expect(page).to have_selector('#shelter_listing > ul > li:nth-child(1)', text: @shelters[1].fetch(:shelter).name())
+      expect(page).to have_selector('#shelter_listing > ul > li:nth-child(1)', text: @shelters[1].fetch(:expected_distance))
+      expect(page).to have_selector('#shelter_listing > ul > li:nth-child(2)', text: @shelters[0].fetch(:shelter).name())
+      expect(page).to have_selector('#shelter_listing > ul > li:nth-child(2)', text: @shelters[0].fetch(:expected_distance))
+    end
+  end
+
 end
