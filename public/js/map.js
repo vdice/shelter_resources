@@ -3,11 +3,22 @@ var labelIndex = 0;
 
 function initialize() {
 
-  // Marker Locations
+  // Marker Locations (Placeholders)
   var portlandCenter = { lat: 45.52, lng: -122.68 };
   var epicodus = {lat: 45.521838, lng: -122.675646};
   var providencePark = {lat: 45.521674, lng: -122.690829}
   var pittockMansion = {lat: 45.525219, lng: -122.716309}
+
+  /* Pull the lat/lng from the DOM using something like this:
+
+      for(var i = 0; i < document.getElementsByClassName('lat').length; i++){
+        var lat = Number(document.getElementsByClassName('lat')[i].innerHTML)
+        var lng = Number(document.getElementsByClassName('lng')[i].innerHTML)
+        addMarker({lat: lat, lng: lng}, resourceMap)
+      }
+
+  */
+
 
   var resourceMap = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
