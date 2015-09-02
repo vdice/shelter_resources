@@ -12,7 +12,6 @@ configure do
 end
 
 get('/locator') do
-  @sorted_shelters = []
   @resources = Resource.all()
   erb(:locator)
 end
@@ -20,13 +19,17 @@ end
 post('/locator') do
   shelters = Shelter.all()
 
-  source = params.fetch('source')
-  geocoded_source = settings.geocoder.geocode(source, settings.bias)
+  source_name = params.fetch('source_name')
+  @source = [params.fetch('source_street'),
+             params.fetch('source_city'),
+             params.fetch('source_state')].join(',')
+
+  @geocoded_source = settings.geocoder.geocode(@source, settings.bias)
 
   with_distance = []
   shelters.each do |shelter_obj|
     geocoded_shelter = settings.geocoder.geocode(shelter_obj.location(), settings.bias)
-    with_distance << [shelter_obj, (geocoded_shelter).distance_to(geocoded_source)]
+    with_distance << [shelter_obj, (geocoded_shelter).distance_to(@geocoded_source)]
   end
 
   @sorted_shelters = with_distance.sort{|a, b| a[1] <=> b[1]}
