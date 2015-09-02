@@ -29,7 +29,7 @@ post('/locator') do
 
   with_distance = []
   shelters.each do |shelter_obj|
-    geocoded_shelter = settings.geocoder.geocode(shelter_obj.location(), settings.bias)
+    geocoded_shelter = settings.geocoder.geocode(shelter_obj.address(), settings.bias)
     distance = (geocoded_shelter).distance_to(@geocoded_source).round(2)
     with_distance << [shelter_obj, distance]
   end

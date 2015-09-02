@@ -17,15 +17,15 @@ describe('the locator functionality', {:type => :feature}) do
     before(:each) do
       @source_street = '208 SW 5th Ave'
 
-      @shelters = [{:shelter => Shelter.create({:name => 'Transition Projects', :location => '665 Northwest Hoyt Street, Portland, OR 97209'}),
+      @shelters = [{:shelter => Shelter.create({:name => 'Transition Projects', :address => '665 Northwest Hoyt Street, Portland, OR 97209'}),
                     :expected_distance => '0.39'},
-                   {:shelter => Shelter.create({:name => 'Portland Rescue Mission', :location => '111 West Burnside Street, Portland, OR 97209'}),
+                   {:shelter => Shelter.create({:name => 'Portland Rescue Mission', :address => '111 West Burnside Street, Portland, OR 97209'}),
                     :expected_distance => '0.22'}]
 
       @resource = Resource.create({:name => 'bed'})
     end
 
-    it('returns a sorted list of shelters based on current location and resource needed') do
+    it('returns a sorted list of shelters based on current address and resource needed') do
       visit(@url)
       fill_in('source_street', :with => @source_street)
       find('#resource_select').find("#option_#{@resource.id()}").select_option

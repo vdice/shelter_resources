@@ -2,9 +2,9 @@ class Shelter < ActiveRecord::Base
   has_many :quantities
   has_many :resources, through: :quantities
   before_save :lowercase_name
-  before_save :lowercase_location
+  before_save :lowercase_address
   validates :name, presence: true
-  validates :location, presence: true
+  validates :address, presence: true
 
   define_singleton_method(:find_by_name) do |name|
     Shelter.all.each do |shelter|
@@ -15,9 +15,9 @@ class Shelter < ActiveRecord::Base
     nil
 end
 
-  define_singleton_method(:find_by_location) do |location|
+  define_singleton_method(:find_by_address) do |address|
     Shelter.all.each do |shelter|
-      if shelter.location == location
+      if shelter.address == address
         return shelter
       end
     end
@@ -29,7 +29,7 @@ end
       self.name.downcase!
     end
 
-    define_method(:lowercase_location) do
-      self.location.downcase!
+    define_method(:lowercase_address) do
+      self.address.downcase!
     end
 end
