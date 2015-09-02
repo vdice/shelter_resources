@@ -1,6 +1,6 @@
 # Shelter Locator App
 
-##### _A Web App to Locate Shelters According to Resource Needed in the Vicinity of the User_
+##### _A web app to locate nearby shelters according to resource needed_
 
 #### By **_Abdul Rahimi, Alisa Colón, Travis Johnston and Vaughn Dice_**
 
