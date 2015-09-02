@@ -3,6 +3,7 @@ Resource.create({:name => 'meal'})
 
 Shelter.create({:name => 'Transition Projects', :location => '665 Northwest Hoyt Street, Portland, OR 97209', :phone_number => "321-456-7890"})
 Shelter.create({:name => 'Portland Rescue Mission', :location => '111 West Burnside Street, Portland, OR 97209', :phone_number => "321-456-7891"})
+
 shelter_list = [
   ["City Team Ministries", "Portland, OR 97214", "503-231-9334"],
   ["Portland Rescue Mission", "Portland, OR 97209", "503-906-7690"],

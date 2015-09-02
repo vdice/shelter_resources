@@ -13,9 +13,9 @@ class Resource < ActiveRecord::Base
     nil
   end
 
-  define_singleton_method(:find_by_location) do |location|
+  define_singleton_method(:find_by_address) do |address|
     Resource.all.each do |resource|
-      if resource.location == location
+      if resource.address == address
         return resource
       end
     end

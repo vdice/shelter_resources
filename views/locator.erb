@@ -36,9 +36,9 @@
   Here is your list of shelters:
 </p>
 <div id="shelter_listing">
-  <ul class="fa-ul">
+  <ul>
     <% @sorted_shelters.each do |shelter| %>
-      <li><i class="fa-li fa fa-home"></i><%= shelter[0].name() %> <strong>at</strong> <%= shelter[0].location() %> <strong>is</strong> <%= shelter[1] %> miles away!</li>
+      <li><i></i><%= shelter[0].name() %> <strong>at</strong> <%= shelter[0].address() %> <strong>is</strong> <%= shelter[1] %> miles away!</li>
     <% end %>
   </ul>
 </div>
