@@ -1,6 +1,6 @@
 class Resource < ActiveRecord::Base
-  has_many :quantities
-  has_many :shelters, through: :quantities
+  has_many :items
+  has_many :shelters, through: :items
   validates :name, presence: true
   before_save :lowercase_name
 

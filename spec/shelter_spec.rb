@@ -1,7 +1,7 @@
 require('spec_helper')
 
 describe Shelter do
-    it { should have_many :quantities }
+    it { should have_many :items }
     it { should have_many :resources }
     it ('returns a lowercased multiple word name') do
       new_shelter = Shelter.create({name: "TaLKing", address: "space", phone_number: "321-456-7890"})

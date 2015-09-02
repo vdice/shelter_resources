@@ -1,6 +1,6 @@
 class Shelter < ActiveRecord::Base
-  has_many :quantities
-  has_many :resources, through: :quantities
+  has_many :items
+  has_many :resources, through: :items
   before_save :lowercase_name
   before_save :lowercase_address
   validates :name, presence: true
