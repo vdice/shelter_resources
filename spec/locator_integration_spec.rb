@@ -18,9 +18,9 @@ describe('the locator functionality', {:type => :feature}) do
       @source_street = '208 SW 5th Ave'
 
       @shelters = [{:shelter => Shelter.create({:name => 'Transition Projects', :location => '665 Northwest Hoyt Street, Portland, OR 97209'}),
-                    :expected_distance => '0.39438972788796417'},
+                    :expected_distance => '0.39'},
                    {:shelter => Shelter.create({:name => 'Portland Rescue Mission', :location => '111 West Burnside Street, Portland, OR 97209'}),
-                    :expected_distance => '0.21978449040906287'}]
+                    :expected_distance => '0.22'}]
 
       @resource = Resource.create({:name => 'bed'})
     end
