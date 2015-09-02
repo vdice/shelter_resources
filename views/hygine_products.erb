@@ -1,0 +1,14 @@
+<table class="hoverable" >
+  <thead>
+    <th>Hygine Products Needed</th>
+  </thead>
+  <tbody>
+    <% Resource.all.each do |resources| %>
+    <tr>
+      <td>
+        <%= Resource.find_by_name %>
+      </td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

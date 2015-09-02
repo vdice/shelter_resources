@@ -43,3 +43,11 @@ end
 get('/') do
   erb :index
 end
+
+get '/donate' do
+  erb :donate
+end
+
+get '/donates/hygine_products' do
+  erb :hygine_products
+end
