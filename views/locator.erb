@@ -1,26 +1,29 @@
-<form id="location_form" action="/locator" method="post">
-  <div class="form-group">
-      <h4>Current Location</h4>
-      <div id="location_form" class="form-group">
-        <label>Name</label>
-        <input type="text" name="source_name" id="source_name" class="form-control" placeholder="optional" value="">
-        <label>Street</label>
-        <input type="text" name="source_street" id="source_street" class="form-control" placeholder="required" required>
-        <label>City</label>
-        <input type="text" name="source_city" id="source_city" class="form-control" value="Portland">
-        <label>State</label>
-        <input type="text" name="source_state" id="source_state" class="form-control" value="OR">
-      </div>
 
-      <h4>Resource Needed</h4>
-      <select id="resource_select" name="resource_select" type="text" class="form-control">
-        <% @resources.each() do |resource| %>
-          <option id="option_<%= resource.id() %>" value="<%= resource.id() %>"><%= resource.name() %></option>
-        <% end %>
-      </select>
-  </div>
-  <button type="submit" class="btn btn-success">Find</button>
-</form>
+<div class="container">
+  <form id="location_form" action="/locator" method="post">
+    <div class="form-group">
+        <h4>Current Location</h4>
+        <div id="location_form" class="form-group">
+          <label>Name</label>
+          <input type="text" name="source_name" id="source_name" class="form-control" placeholder="optional" value="">
+          <label>Street</label>
+          <input type="text" name="source_street" id="source_street" class="form-control" placeholder="required" required>
+          <label>City</label>
+          <input type="text" name="source_city" id="source_city" class="form-control" value="Portland">
+          <label>State</label>
+          <input type="text" name="source_state" id="source_state" class="form-control" value="OR">
+        </div>
+
+        <h4>Resource Needed</h4>
+        <select id="resource_select" name="resource_select" type="text" class="form-control">
+          <% @resources.each() do |resource| %>
+            <option id="option_<%= resource.id() %>" value="<%= resource.id() %>"><%= resource.name() %></option>
+          <% end %>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Find</button>
+  </form>
+</div>
 
 <!-- TODO: Check to make sure the geocode for source is not empty/nil -->
 <!--       If it is, ask user to try again ?                          -->
@@ -38,8 +41,14 @@
 <div id="shelter_listing">
   <ul>
     <% @sorted_shelters.each do |shelter| %>
-      <li><i></i><%= shelter[0].name() %> <strong>at</strong> <%= shelter[0].address() %> <strong>is</strong> <%= shelter[1] %> miles away!</li>
+      <li>
+        <%= shelter[0].name() %> <strong>at</strong> <%= shelter[0].address() %> <strong>is</strong> <%= shelter[1] %> miles away!
+        <p class="lat" style="display: none;"><%= shelter[0].latitude() %></p>
+        <p class="lng" style="display: none;"><%= shelter[0].longitude() %></p>
+      </li>
     <% end %>
   </ul>
 </div>
 <% end %>
+
+<div id="map"></div>

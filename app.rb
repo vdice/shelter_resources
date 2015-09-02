@@ -31,10 +31,13 @@ post('/locator') do
   shelters.each do |shelter_obj|
     geocoded_shelter = settings.geocoder.geocode(shelter_obj.address(), settings.bias)
     distance = (geocoded_shelter).distance_to(@geocoded_source).round(2)
+    shelter_obj.latitude=geocoded_shelter.lat
+    shelter_obj.longitude=geocoded_shelter.lng
     with_distance << [shelter_obj, distance]
   end
 
-  @sorted_shelters = with_distance.sort{|a, b| a[1] <=> b[1]}
+  @sorted_shelters = with_distance.sort{|a, b| a[1] <=> b[1]}[0...5]
+  p @sorted_shelters
   @resources = Resource.all()
 
   erb(:locator)
