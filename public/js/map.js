@@ -27,7 +27,8 @@ function initMap() {
     var marker = new google.maps.Marker({
       position: location,
       label: labels[labelIndex++ % labels.length],
-      map: map
+      map: map,
+      animation: google.maps.Animation.DROP
     });
   }
 
