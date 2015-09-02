@@ -42,7 +42,7 @@
   <ul>
     <% @sorted_shelters.each do |shelter| %>
       <li>
-        <%= shelter[0].name() %> <strong>at</strong> <%= shelter[0].address() %> <strong>is</strong> <%= shelter[1] %> miles away!
+        <%= HelperMethod.capitalize_multiple_words(shelter[0].name()) %> <strong>at</strong> <%= HelperMethod.capitalize_multiple_words(shelter[0].address()) %> <strong>is</strong> <%= shelter[1] %> miles away!
         <p class="lat" style="display: none;"><%= shelter[0].latitude() %></p>
         <p class="lng" style="display: none;"><%= shelter[0].longitude() %></p>
       </li>

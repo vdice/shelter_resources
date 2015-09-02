@@ -21,7 +21,6 @@ describe('the locator functionality', {:type => :feature}) do
       @shelters = [{:shelter => Shelter.create({:name => 'Transition Projects', :address => '665 Northwest Hoyt Street, Portland, OR 97209', :phone_number => "321-456-7890"}),
                     :expected_distance => '0.39'},
                    {:shelter => Shelter.create({:name => 'Portland Rescue Mission', :address => '111 West Burnside Street, Portland, OR 97209', :phone_number => "321-456-7890"}),
-
                     :expected_distance => '0.22'}]
 
       @resource = Resource.create({:name => 'bed'})
@@ -32,9 +31,9 @@ describe('the locator functionality', {:type => :feature}) do
       fill_in('source_street', :with => @source_street)
       find('#resource_select').find("#option_#{@resource.id()}").select_option
       click_button('Find')
-      expect(page).to have_selector('#shelter_listing > ul > li:nth-child(1)', text: @shelters[1].fetch(:shelter).name())
+      expect(page).to have_selector('#shelter_listing > ul > li:nth-child(1)', text: HelperMethod.capitalize_multiple_words(@shelters[1].fetch(:shelter).name()))
       expect(page).to have_selector('#shelter_listing > ul > li:nth-child(1)', text: @shelters[1].fetch(:expected_distance))
-      expect(page).to have_selector('#shelter_listing > ul > li:nth-child(2)', text: @shelters[0].fetch(:shelter).name())
+      expect(page).to have_selector('#shelter_listing > ul > li:nth-child(2)', text: HelperMethod.capitalize_multiple_words(@shelters[0].fetch(:shelter).name()))
       expect(page).to have_selector('#shelter_listing > ul > li:nth-child(2)', text: @shelters[0].fetch(:expected_distance))
     end
   end
