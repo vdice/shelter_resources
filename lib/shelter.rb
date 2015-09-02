@@ -26,18 +26,10 @@ end
 
   private
     define_method(:lowercase_name) do
-      if self.name.match(/\s/)
-        self.name = name.split.each{|word|word.downcase!}.join(" ")
-      else
-        self.name = name.downcase!
+      self.name.downcase!
     end
-  end
 
     define_method(:lowercase_location) do
-      if self.location.match(/\s/)
-        self.location = location.split.each{|word|word.downcase!}.join(" ")
-      else
-        self.location = location.downcase!
-      end
+      self.location.downcase!
     end
 end
