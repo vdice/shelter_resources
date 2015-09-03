@@ -68,3 +68,8 @@ get '/resources/:id' do
   @resource = Resource.find(params['id'].to_i)
   erb :resource_inventory
 end
+
+get '/shelters/:id' do
+  @shelter = Shelter.find(params.fetch('id').to_i)
+  erb :shelter
+end
