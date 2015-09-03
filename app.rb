@@ -40,9 +40,23 @@ post('/locator/results') do
     @geocoded_source = settings.geocoder.geocode('Portland, OR')
   end
 
+  # get resource selection and filter shelters based on
+  # which shelters have items in need
+  resource_id = params.fetch('resource_select').to_i()
+  found_shelters = []
+  shelters.each() do |shelter|
+    include_shelter = false
+    shelter.items.each() do |item|
+      if (item.resource_id().eql?(resource_id))
+        include_shelter = true if item.quantity().>(0)
+      end
+    end
+    found_shelters.push(shelter) if include_shelter
+  end
+
   # calculate distance from source to each shelter
   with_distance = []
-  shelters.each do |shelter|
+  found_shelters.each do |shelter|
     geocoded_shelter = settings.geocoder.geocode(shelter.address())
     distance = (geocoded_shelter).distance_to(@geocoded_source).round(2)
     shelter.latitude=geocoded_shelter.lat

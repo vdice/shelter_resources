@@ -29,7 +29,7 @@ shelter_list.each() do |name, address, phone_number, description|
 
   Resource.all().each() do |resource|
     resource_list.fetch(resource.name()).each() do |item_name|
-      Item.create({:name => item_name, :quantity => 0, :resource_id => resource.id(), :shelter_id => new_shelter.id()})
+      Item.create({:name => item_name, :quantity => rand(0...5), :resource_id => resource.id(), :shelter_id => new_shelter.id()})
     end
   end
 end
