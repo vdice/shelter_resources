@@ -54,6 +54,5 @@ end
 
 get '/resources/:id' do
   @resource = Resource.find(params['id'].to_i)
-  binding.pry
   erb :resource_inventory
 end
