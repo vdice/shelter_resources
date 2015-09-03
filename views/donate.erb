@@ -1,16 +1,19 @@
-
 <div class="container">
+
   <h1>Donate by:</h1>
-  <form action="/donates/" method="post">
+  
+  <form action="/donates" method="post">
     <label for="location">Nearest Location:</label>
     <input type="text" name="location">
     <button name="button">Submit</button></br></br>
   </form>
+  <p class="hidden" id="shelterArr"><%= @shelter_arr.join(",") %></p>
 
   <form action="/donates" method="post">
     <label for="shelter">Specific Shelter:</label>
     <input type="text" name="shelter" id="shelterAutoComplete">
     <button name="button">Submit</button></br></br>
+
 
   </form>
 

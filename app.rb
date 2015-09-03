@@ -48,6 +48,7 @@ end
 
 get '/donate' do
   @resources = Resource.all
+  @shelter_arr = Shelter.all.map{|shelter_obj| shelter_obj.name }
   erb :donate
 end
 
