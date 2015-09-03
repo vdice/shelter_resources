@@ -8,9 +8,8 @@ require('geokit')
 include(HelperMethod)
 
 configure do
+  Geokit::Geocoders::request_timeout = 5
   set :geocoder, Geokit::Geocoders::GoogleGeocoder3
-  # set :portland_bounds, settings.geocoder.geocode('Portland').suggested_bounds
-  # set :bias, { :bias => settings.portland_bounds }
 end
 
 get('/locator') do

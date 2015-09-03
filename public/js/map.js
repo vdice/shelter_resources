@@ -47,7 +47,7 @@ function initMap() {
 function drawMap() {
   var portlandCenter = { lat: 45.52, lng: -122.68 };
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
+    zoom: 13,
     center: portlandCenter
   });
 
@@ -81,9 +81,9 @@ function locateShelters(map) {
   };
 }
 
+var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var labelIndex = 0;
 function addMarker(location, map, title) {
-  var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  var labelIndex = 0;
 
   var marker = new google.maps.Marker({
     position: location,
