@@ -60,12 +60,12 @@ end
 
 get '/donate' do
   @resources = Resource.all
+  @shelter_arr = Shelter.all.map{|shelter_obj| shelter_obj.name }
   erb :donate
 end
 
-get '/donates/:id' do
+
+get '/resources/:id' do
   @resource = Resource.find(params['id'].to_i)
-  @resource_name = HelperMethod.capitalize_multiple_words(@resource.name)
- @items = @resource.items
-    erb :donate_need
+  erb :resource_inventory
 end
