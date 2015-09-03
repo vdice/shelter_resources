@@ -1,24 +1,38 @@
 <!DOCTYPE HTML>
 <html>
   <head>
+
     <link rel='stylesheet' href='/css/main.css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- vendor styles -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+
+
+
+    <!-- local styles -->
+    <link rel='stylesheet' href='/css/main.css'>
     <link rel="stylesheet" href="/css/style.css">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-      <meta charset="utf-8">
-    <title>Homesless.io</title>
+
+
+    <title>Xenia</title>
   </head>
   <body>
     <%= yield %>
   </body>
+  <!-- vendor js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <!-- local js -->
+    <script src="/js/main.js"></script>
     <script src="/js/map.js"></script>
-    <!-- this needs to be below js that depends on it... we think ??? -->
+    <script src="/js/autocomplete.js"></script>
+    <!-- async googlapis call needs to be below js that depends on it -->
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"></script>
-    <script src="/js/autocomplete.js"></script>
+
 </html>

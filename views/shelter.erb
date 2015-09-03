@@ -1,0 +1,33 @@
+<div class="container">
+  <h4><i class="material-icons">home</i>
+    <i>
+      <a target="_blank" href="https://www.google.com/maps/place/<%= @shelter.name().split().join('+') %>">
+        <%= HelperMethod.capitalize_multiple_words(@shelter.name()) %>
+      </a>
+    </i>
+  </h4>
+
+  <h4>
+    <i class="material-icons">my_location</i>
+    <i><%= HelperMethod.capitalize_multiple_words(@shelter.address()) %></i>
+  </h4>
+
+  <h4>
+    <i class="material-icons">phone</i>
+    <i><%= @shelter.phone_number() %></i>
+  </h4>
+
+  <br>
+  <div id="resource_list">
+    <ul><h5>Resources Needed:</h5>
+      <% @shelter.items.each do |item| %>
+        <% if item.quantity().eql?(0) %>
+          <li>
+            <strong>Item:</strong> <i><%= item.name() %></i>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+
+  </div>
+</div>
