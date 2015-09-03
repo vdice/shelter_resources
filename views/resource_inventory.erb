@@ -1,0 +1,16 @@
+<h1>Current Inventory of <%= @resource.name %></h1>
+
+<table class="hoverable">
+  <thead>
+    <th>Quantity</th>
+    <th>Item</th>
+  </thead>
+  <tbody>
+    <% @resource.items.each do |item| %>
+      <tr>
+        <td><%= item.quantity%></td>
+        <td><%= item.name%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

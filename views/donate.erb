@@ -1,5 +1,5 @@
 
-  <div class="container">
+<div class="container">
   <h1>Donate by:</h1>
   <form action="/donates/" method="post">
     <label for="location">Nearest Location:</label>
@@ -9,20 +9,13 @@
 
   <form action="/donates" method="post">
     <label for="shelter">Specific Shelter:</label>
-    <input type="text" name="shelter">
+    <input type="text" name="shelter" id="shelterAutoComplete">
     <button name="button">Submit</button></br></br>
-</form>
-    <p>Find Shelters by What They Need:</p>
-    <a href="/donates/hygine_products" class="btn btn-default btn-lg btn-block">Hygiene Products</a>
-    </br>
-    <a href="/donates/linens" class="btn btn-default btn-lg btn-block">Linens</a>
-    </br>
-    <a href="/donates/clothing" class="btn btn-default btn-lg btn-block">Clothing</a>
-    </br>
-    <a href="/donates/books" class="btn btn-default btn-lg btn-block">Books</a>
-    </br>
-    <a href="/donates/toys" class="btn btn-default btn-lg btn-block">Toys</a>
-    </br>
-    <a href="/donates/food" class="btn btn-default btn-lg btn-block">Food</a>
-    </br>
-  </div>
+  </form>
+
+  <p>Find Shelters by What They Need:</p>
+  <% @resources.each do |resource| %>
+    <a href="/resources/<%= resource.id %>" class="btn btn-default btn-lg btn-block"><%= resource.name %></a>
+  <% end %>
+
+</div>
