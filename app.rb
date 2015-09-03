@@ -48,6 +48,7 @@ get('/') do
 end
 
 get '/donate' do
+  @shelter_arr = Shelter.all.map{|shelter_obj| shelter_obj.name }
   erb :donate
 end
 
