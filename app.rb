@@ -51,9 +51,8 @@ get '/donate' do
   erb :donate
 end
 
-get '/donates/:id' do
+
+get '/resources/:id' do
   @resource = Resource.find(params['id'].to_i)
-  @resource_name = HelperMethod.capitalize_multiple_words(@resource.name)
- @items = @resource.items
-    erb :donate_need
+  erb :resource_inventory
 end
