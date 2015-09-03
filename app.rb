@@ -47,7 +47,7 @@ get('/') do
 end
 
 get '/donate' do
-  @resources = Resource.all
+  @resources = Resource.all.sort{ |x,y| x.name <=> y.name }
   @shelter_arr = Shelter.all.map{|shelter_obj| shelter_obj.name }
   erb :donate
 end
@@ -56,4 +56,10 @@ end
 get '/resources/:id' do
   @resource = Resource.find(params['id'].to_i)
   erb :resource_inventory
+end
+
+get '/support' do
+  @resources = Resource.all.sort{ |x,y| x.name <=> y.name }
+  @shelter_arr = Shelter.all.map{|shelter_obj| shelter_obj.name }
+  erb :support
 end

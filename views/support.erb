@@ -1,0 +1,21 @@
+<div class="container">
+<h1>Find Support by:</h1>
+
+<form action="/supports" method="post">
+  <label for="location">Nearest Location:</label>
+  <input type="text" name="location">
+  <button name="button">Submit</button></br></br>
+</form>
+
+<p class="hidden" id="shelterArr"><%= @shelter_arr.join(",") %></p>
+
+
+</form>
+
+<p>Find what shelters have available</p>
+<% @resources.each do |resource| %>
+  <a href="/resources/<%= resource.id %>" class="btn btn-default btn-lg btn-block"><%= resource.name %></a>
+<% end %>
+
+</div>
+</div>
