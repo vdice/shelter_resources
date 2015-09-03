@@ -9,8 +9,8 @@ include(HelperMethod)
 
 configure do
   set :geocoder, Geokit::Geocoders::GoogleGeocoder3
-  set :portland_bounds, settings.geocoder.geocode('Portland').suggested_bounds
-  set :bias, { :bias => settings.portland_bounds }
+  # set :portland_bounds, settings.geocoder.geocode('Portland').suggested_bounds
+  # set :bias, { :bias => settings.portland_bounds }
 end
 
 get('/locator') do
@@ -20,24 +20,36 @@ end
 
 post('/locator/results') do
   shelters = Shelter.all()
+  @resources = Resource.all()
 
-  @source = [params.fetch('source_street'),
-             params.fetch('source_city'),
-             params.fetch('source_state')].join(',')
+  source = nil
+  # fetch user lat/lng auto-populated by map.js on window load
+  user_latitude = params.fetch('user_latitude')
+  user_longitude = params.fetch('user_longitude')
 
-  @geocoded_source = settings.geocoder.geocode(@source, settings.bias)
+  if (params.fetch('source_street').empty?)
+    source = [user_latitude,
+              user_longitude].join(', ')
 
-  with_distance = []
-  shelters.each do |shelter_obj|
-    geocoded_shelter = settings.geocoder.geocode(shelter_obj.address(), settings.bias)
-    distance = (geocoded_shelter).distance_to(@geocoded_source).round(2)
-    shelter_obj.latitude=geocoded_shelter.lat
-    shelter_obj.longitude=geocoded_shelter.lng
-    with_distance << [shelter_obj, distance]
+  else
+    source = [params.fetch('source_street'),
+              params.fetch('source_city'),
+              params.fetch('source_state')].join(', ')
   end
 
+  @geocoded_source = settings.geocoder.geocode(source)
+  # calculate distance from source to each shelter
+  with_distance = []
+  shelters.each do |shelter|
+    geocoded_shelter = settings.geocoder.geocode(shelter.address())
+    distance = (geocoded_shelter).distance_to(@geocoded_source).round(2)
+    shelter.latitude=geocoded_shelter.lat
+    shelter.longitude=geocoded_shelter.lng
+    with_distance << [shelter, distance]
+  end
+
+  # sort according to distance (index 1 on with_distance array)
   @sorted_shelters = with_distance.sort{|a, b| a[1] <=> b[1]}[0...5]
-  @resources = Resource.all()
 
   erb(:locator_results)
 end
