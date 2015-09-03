@@ -107,16 +107,33 @@ get '/shelters/:id' do
 end
 
 post '/support' do
+  shelters = Shelter.all()
+
   location = params.fetch('location')
 
   if (location.empty?)
-    # auto locate user
-
-
+    # TODO: auto locate user
   else
-    # use provided location
+    @geocoded_source = settings.geocoder.geocode(location)
 
+    # calculate distance from source to each shelter
+    with_distance = []
+    shelters.each do |shelter|
+      geocoded_shelter = settings.geocoder.geocode(shelter.address())
+      distance = (geocoded_shelter).distance_to(@geocoded_source).round(2)
+      shelter.latitude=geocoded_shelter.lat
+      shelter.longitude=geocoded_shelter.lng
+      with_distance << [shelter, distance]
+    end
+
+    # sort according to distance (index 1 on with_distance array)
+    @sorted_shelters = with_distance.sort{|a, b| a[1] <=> b[1]}[0...5]
 
   end
   erb :locator_results
+end
+
+post '/support/shelters' do
+  @shelter = Shelter.find_by_name(params.fetch('shelter'))
+  redirect("/shelters/#{@shelter.id()}")
 end
