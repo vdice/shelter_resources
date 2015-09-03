@@ -8,7 +8,6 @@ require('geokit')
 include(HelperMethod)
 
 configure do
-  Geokit::Geocoders::request_timeout = 5
   set :geocoder, Geokit::Geocoders::GoogleGeocoder3
 end
 
@@ -37,6 +36,10 @@ post('/locator/results') do
   end
 
   @geocoded_source = settings.geocoder.geocode(source)
+  if @geocoded_source.full_address.empty?
+    @geocoded_source = settings.geocoder.geocode('Portland, OR')
+  end
+
   # calculate distance from source to each shelter
   with_distance = []
   shelters.each do |shelter|
