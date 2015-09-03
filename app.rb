@@ -47,11 +47,13 @@ get('/') do
 end
 
 get '/donate' do
+  @resources = Resource.all
   erb :donate
 end
 
-get '/donates/hygine_products' do
-  @resource = Resource.find_by_name("hygine products")
+get '/donates/:id' do
+  @resource = Resource.find(params['id'].to_i)
   @resource_name = HelperMethod.capitalize_multiple_words(@resource.name)
-  erb :hygine_products
+ @items = @resource.items
+    erb :donate_need
 end
