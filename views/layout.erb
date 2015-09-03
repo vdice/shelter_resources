@@ -1,24 +1,25 @@
 <!DOCTYPE HTML>
 <html>
-
 <head>
+  <!-- vendor styles -->
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css'>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+  <!-- local styles -->
   <link rel='stylesheet' href='/css/main.css'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-  <link rel="stylesheet" href="/css/style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-
-  <script src="/js/map.js"></script>
-  <!-- this needs to be below js that depends on it... we think ??? -->
+  <link rel='stylesheet' href='/css/style.css'>
+  <!-- vendor js -->
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js'></script>
+  <!-- local js -->
+  <script src='/js/main.js'></script>
+  <script src='/js/map.js'></script>
+  <!-- async googleapis needs to be below js that depends on it...-->
   <script async defer
-          src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"></script>
+          src='https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap'></script>
 
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
   <title>Homesless.io</title>
 </head>
 <body>
   <%= yield %>
 </body>
-
 </html>

@@ -18,10 +18,9 @@ get('/locator') do
   erb(:locator)
 end
 
-post('/locator') do
+post('/locator/results') do
   shelters = Shelter.all()
 
-  source_name = params.fetch('source_name')
   @source = [params.fetch('source_street'),
              params.fetch('source_city'),
              params.fetch('source_state')].join(',')
@@ -40,7 +39,7 @@ post('/locator') do
   @sorted_shelters = with_distance.sort{|a, b| a[1] <=> b[1]}[0...5]
   @resources = Resource.all()
 
-  erb(:locator)
+  erb(:locator_results)
 end
 
 get('/') do

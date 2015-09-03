@@ -31,10 +31,10 @@ describe('the locator functionality', {:type => :feature}) do
       fill_in('source_street', :with => @source_street)
       find('#resource_select').find("#option_#{@resource.id()}").select_option
       click_button('Find')
-      expect(page).to have_selector('#shelter_listing > ul > li:nth-child(1)', text: HelperMethod.capitalize_multiple_words(@shelters[1].fetch(:shelter).name()))
-      expect(page).to have_selector('#shelter_listing > ul > li:nth-child(1)', text: @shelters[1].fetch(:expected_distance))
-      expect(page).to have_selector('#shelter_listing > ul > li:nth-child(2)', text: HelperMethod.capitalize_multiple_words(@shelters[0].fetch(:shelter).name()))
-      expect(page).to have_selector('#shelter_listing > ul > li:nth-child(2)', text: @shelters[0].fetch(:expected_distance))
+      expect(page).to have_selector('#shelter_listing > div > a:nth-child(1)', text: HelperMethod.capitalize_multiple_words(@shelters[1].fetch(:shelter).name()))
+      expect(page).to have_selector('#shelter_listing > div > a:nth-child(1)', text: @shelters[1].fetch(:expected_distance))
+      expect(page).to have_selector('#shelter_listing > div > a:nth-child(2)', text: HelperMethod.capitalize_multiple_words(@shelters[0].fetch(:shelter).name()))
+      expect(page).to have_selector('#shelter_listing > div > a:nth-child(2)', text: @shelters[0].fetch(:expected_distance))
     end
   end
 

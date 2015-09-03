@@ -1,0 +1,27 @@
+<!-- TODO: Check to make sure the geocode for source is not empty/nil -->
+<!--       If it is, ask user to try again ?                          -->
+<div class="container">
+  <h4>Your Current Location:</h4>
+  <p style="text-indent: 25px;"><i><%= @geocoded_source.full_address %></i></p>
+  <p id="source_lat" style="display: none;"><%= @geocoded_source.lat %></p>
+  <p id="source_lng" style="display: none;"><%= @geocoded_source.lng %></p>
+
+  <h4>
+    Shelters Near You:
+  </h4>
+  <div id="shelter_listing">
+    <div class="collection">
+      <% @sorted_shelters.each do |shelter| %>
+        <a href="/shelters/<%= shelter[0].id() %>" class="collection-item">
+          <i class="material-icons">home</i>
+          <%= HelperMethod.capitalize_multiple_words(shelter[0].name()) %> <strong>at</strong> <%= HelperMethod.capitalize_multiple_words(shelter[0].address()) %> <strong>is</strong> <%= shelter[1] %> miles away!
+          <p class="shelter_name" style="display: none;"><%= shelter[0].name() %></p>
+          <p class="lat" style="display: none;"><%= shelter[0].latitude() %></p>
+          <p class="lng" style="display: none;"><%= shelter[0].longitude() %></p>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div id="map"></div>

@@ -1,21 +1,19 @@
 
 <div class="container">
-  <form id="location_form" action="/locator" method="post">
-    <div class="form-group">
+  <form id="location_form" action="/locator/results" method="post">
+    <div class="col s12">
         <h4>Current Location</h4>
-        <div id="location_form" class="form-group">
-          <label>Name</label>
-          <input type="text" name="source_name" id="source_name" class="form-control" placeholder="optional" value="">
+        <div id="location_form">
           <label>Street</label>
-          <input type="text" name="source_street" id="source_street" class="form-control" placeholder="required" required>
+          <input type="text" name="source_street" id="source_street" placeholder="required" required>
           <label>City</label>
-          <input type="text" name="source_city" id="source_city" class="form-control" value="Portland">
+          <input type="text" name="source_city" id="source_city" value="Portland">
           <label>State</label>
-          <input type="text" name="source_state" id="source_state" class="form-control" value="OR">
+          <input type="text" name="source_state" id="source_state" value="OR">
         </div>
 
         <h4>Resource Needed</h4>
-        <select id="resource_select" name="resource_select" type="text" class="form-control">
+        <select id="resource_select" name="resource_select" type="text">
           <% @resources.each() do |resource| %>
             <option id="option_<%= resource.id() %>" value="<%= resource.id() %>"><%= resource.name() %></option>
           <% end %>
@@ -25,30 +23,4 @@
   </form>
 </div>
 
-<!-- TODO: Check to make sure the geocode for source is not empty/nil -->
-<!--       If it is, ask user to try again ?                          -->
-
-<% unless @sorted_shelters.nil? %>
-<br>
-<p>
-  The location entered above resolves to the following address:
-  <p style="text-indent: 25px;"><i><%= @geocoded_source.full_address %></i></p>
-</p>
-
-<p>
-  Here is your list of shelters:
-</p>
-<div id="shelter_listing">
-  <ul>
-    <% @sorted_shelters.each do |shelter| %>
-      <li>
-        <%= HelperMethod.capitalize_multiple_words(shelter[0].name()) %> <strong>at</strong> <%= HelperMethod.capitalize_multiple_words(shelter[0].address()) %> <strong>is</strong> <%= shelter[1] %> miles away!
-        <p class="lat" style="display: none;"><%= shelter[0].latitude() %></p>
-        <p class="lng" style="display: none;"><%= shelter[0].longitude() %></p>
-      </li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
-
-<div id="map"></div>
+<!-- If HTML5 geolocation enabled, capture current location -->
