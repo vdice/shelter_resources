@@ -25,7 +25,7 @@ The mission of Transition Projects is to serve people's basic needs as they tran
 ]
 
 shelter_list.each() do |name, address, phone_number, description|
-  new_shelter = Shelter.create({:name => name, :address => address, :phone_number => phone_number, :desciption => description})
+  new_shelter = Shelter.create({:name => name, :address => address, :phone_number => phone_number, :description => description})
 
   Resource.all().each() do |resource|
     resource_list.fetch(resource.name()).each() do |item_name|
