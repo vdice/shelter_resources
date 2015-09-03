@@ -25,19 +25,7 @@ function locateUser() {
   function handleLocationError(browserHasGeolocation, pos) {
     browserHasGeolocation ? console.log('Error: The Geolocation service failed.') :
                             console.log('Error: Your browser doesn\'t support geolocation.');
-    // var infoWindow = new google.maps.InfoWindow({map: map});
-    // infoWindow.setPosition(pos);
-    // infoWindow.setContent(browserHasGeolocation ?
-    //                       'Error: The Geolocation service failed.' :
-    //                       'Error: Your browser doesn\'t support geolocation.');
-
   }
-  // function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    // infoWindow.setPosition(pos);
-    // infoWindow.setContent(browserHasGeolocation ?
-    //                       'Error: The Geolocation service failed.' :
-    //                       'Error: Your browser doesn\'t support geolocation.');
-  // }
 }
 
 function initMap() {

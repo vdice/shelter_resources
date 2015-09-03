@@ -77,7 +77,11 @@ end
 get '/donate' do
   @resources = Resource.all.sort{ |x,y| x.name <=> y.name }
   @shelter_arr = Shelter.all.map{|shelter_obj| shelter_obj.name }
-  erb :donate
+
+  @route_heading = 'Donate By:'
+  @action = 'donate'
+  @find_shelter_string = 'Find Shelters by What They Need:'
+  erb :find_by
 end
 
 
@@ -90,10 +94,29 @@ end
 get '/support' do
   @resources = Resource.all.sort{ |x,y| x.name <=> y.name }
   @shelter_arr = Shelter.all.map{|shelter_obj| shelter_obj.name }
-  erb :support
+
+  @route_heading = 'Find Support By:'
+  @action = 'support'
+  @find_shelter_string = 'Find Shelters by Resource:'
+  erb :find_by
 end
 
 get '/shelters/:id' do
   @shelter = Shelter.find(params.fetch('id').to_i)
   erb :shelter
+end
+
+post '/support' do
+  location = params.fetch('location')
+
+  if (location.empty?)
+    # auto locate user
+
+
+  else
+    # use provided location
+
+
+  end
+  erb :locator_results
 end
