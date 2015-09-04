@@ -1,21 +1,24 @@
 <div class="container">
   <h4><i class="material-icons">home</i>
-    <i>
-      <a target="_blank" href="https://www.google.com/maps/place/<%= @shelter.name().split().join('+') %>">
-        <%= HelperMethod.capitalize_multiple_words(@shelter.name()) %>
-      </a>
-    </i>
+    <a target="_blank" href="https://www.google.com/maps/place/<%= @shelter.name().split().join('+') %>">
+      <%= HelperMethod.capitalize_multiple_words(@shelter.name()) %>
+    </a>
   </h4>
 
   <h4>
     <i class="material-icons">my_location</i>
-    <i><%= HelperMethod.capitalize_multiple_words(@shelter.address()) %></i>
+    <%= HelperMethod.capitalize_multiple_words(@shelter.address()) %>
   </h4>
 
   <h4>
     <i class="material-icons">phone</i>
-    <i><%= @shelter.phone_number() %></i>
+    <%= @shelter.phone_number() %>
   </h4>
+
+  <h5>
+    <i class="material-icons">info_outline</i>
+    <%= @shelter.description() %>
+  </h5>
 
   <br>
   <div id="resource_list">
@@ -23,7 +26,7 @@
       <% @shelter.items.each do |item| %>
         <% if item.quantity().eql?(0) %>
           <li>
-            <strong>Item:</strong> <i><%= item.name() %></i>
+            <i><%= item.name() %></i>
           </li>
         <% end %>
       <% end %>

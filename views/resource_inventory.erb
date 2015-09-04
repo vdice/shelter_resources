@@ -1,7 +1,7 @@
 <div class="container">
-  <h1>Current Inventory of <%= @resource.name %></h1>
+  <h1>Current Inventory of <%= @resource.name.capitalize %></h1>
 
-  <table class="hoverable">
+  <table class="bordered striped">
     <thead>
       <th>Shelter Name</th>
       <th>Item</th>
@@ -10,8 +10,9 @@
     <tbody>
       <% @resource.items.each do |item| %>
         <tr>
-          <td><%= item.quantity%></td>
+          <td><%= item.shelter.name.capitalize%></td>
           <td><%= item.name%></td>
+          <td><%= item.quantity%></td>
         </tr>
       <% end %>
     </tbody>
