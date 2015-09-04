@@ -85,8 +85,6 @@ html, body {
   color: #068BD1;
 }
 
-
-
 .no-margin{
   margin: 0;
 }
@@ -131,7 +129,7 @@ body{
   background-attachment: fixed;
   background-position: 50% 0;
   background-repeat: no-repeat;
-  height: 450px;
+  height: 375px;
   position: relative;
 }
 
@@ -140,4 +138,11 @@ body{
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: 0px -120px;
+}
+
+.city{
+  background-image: url(/img/city.jpeg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: 0px 120px;
 }
