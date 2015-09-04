@@ -1,4 +1,4 @@
-# Shelter Locator App
+# Xenia
 
 ##### _A web app to locate nearby shelters according to resource needed_
 
@@ -6,7 +6,13 @@
 
 ## Description
 
-_Coming Soon_
+_**Xenia is live!** It has been deployed via Heroku and can be seen [**here**](https://xenia.herokuapp.com/)._
+
+_With Xenia, users can:_
+* _Find the nearest shelters that offer needed resources_
+* _Find the nearest shelters that need resources donated_
+* _See resource levels for all shelters in real-time_
+* _Donate resources to any shelter they choose_
 
 ## Setup
 
