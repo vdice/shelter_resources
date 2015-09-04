@@ -7,6 +7,13 @@
 nav ul a,
 nav .brand-logo {
  color: #444;
+ font-family: 'Montserrat', sans-serif;
+}
+
+.brand-logo{
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
 }
 
 .nav-wrapper {
@@ -58,10 +65,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-}
-
-#map {
-  height: 100%;
+  font-family: 'Istok Web', sans-serif;
 }
 
 .hidden{
@@ -153,4 +157,9 @@ body{
   width: 20vw;
   height: 20vw;
   margin-bottom: 100%
+}
+
+.description-heading{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
 }
