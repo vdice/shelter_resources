@@ -27,11 +27,11 @@
   <p>Or, <%= @find_shelter_string %></p>
   <div class="row">
     <% @resources.each do |resource| %>
-    <button class="btn-floating btn-large waves-effect waves-light btn-pop" style="height: 128px; width: 128px;">
       <a href="/resources/<%= resource.id %>">
-        <img src="/img/<%= resource.name().split().join('_') %>64x64.png" title="<%= capitalize(resource.name()) %>" align="middle">
+        <button class="btn-floating btn-large waves-effect waves-light btn-pop" style="height: 128px; width: 128px;">
+          <img src="/img/<%= resource.name().split().join('_') %>64x64.png" title="<%= capitalize(resource.name()) %>" align="middle">
+        </button>
       </a>
-    </button>
     <% end %>
   </div>
 

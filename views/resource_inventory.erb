@@ -1,20 +1,27 @@
 <div class="container">
-  <h1>Current Inventory of <%= @resource.name %></h1>
+  <h1>Current Inventory of <strong><%= capitalize(@resource.name) %></strong></h1>
 
-  <table class="hoverable">
+  <table class="striped">
     <thead>
-      <th>Shelter Name</th>
-      <th>Item</th>
-      <th>Quantity</th>
+      <th><i class="material-icons prefix">home</i></th>
+      <th><img src="/img/<%= @resource.name %>.png"/></th>
+      <th><img src="/img/hash.png"/></th>
     </thead>
     <tbody>
-      <% @resource.items.each do |item| %>
-        <% shelter = Shelter.find(item.shelter_id()) %>
-        <tr>
-          <td><a href="/shelters/<%= shelter.id() %>"><%= capitalize(shelter.name()) %></a></td>
-          <td><%= item.quantity%></td>
-          <td><%= item.name%></td>
-        </tr>
+      <% Shelter.all().each() do |shelter| %>
+        <% repeated = false %>
+        <% shelter.items().each() do |item| %>
+          <% if (item.resource_id().eql?(@resource.id())) %>
+            <% highlight = "background-color: rgba(255,0,0,0.5);" %>
+            <% style = item.quantity.eql?(0) ? highlight : ''%>
+            <tr>
+              <td><a href="/shelters/<%= shelter.id() %>"><%= capitalize(shelter.name()) unless repeated%></a></td>
+              <td style="<%= style %>"><%= item.name%></td>
+              <td style="<%= style %>"><%= item.quantity%></td>
+            </tr>
+            <% repeated = true %>
+          <% end %>
+        <% end %>
       <% end %>
     </tbody>
   </table>

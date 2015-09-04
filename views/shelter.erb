@@ -22,12 +22,17 @@
 
   <br>
   <div id="resource_list">
-    <ul><h5>Resources Needed:</h5>
+    <h5>Items Needed:</h5>
+    <ul>
       <% @shelter.items.each do |item| %>
         <% if item.quantity().eql?(0) %>
           <li>
-            <i><%= item.name() %></i>
-          </li>
+            <i>
+              <% resource = Resource.find(item.resource_id) %>
+              <img src="/img/<%= resource.name().split().join('_') %>.png"/>
+              <%= item.name() %>
+            </i>
+          </li><br>
         <% end %>
       <% end %>
     </ul>
