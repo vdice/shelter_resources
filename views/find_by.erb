@@ -1,6 +1,6 @@
 <div class="container">
 
-  <h1>Donate</h1>
+  <h1><%= @route_heading %></h1>
 
   <div class="resourceContainer">
     <label class="resourceLabel">Find a Shelter by Resource Need:</label>
@@ -11,17 +11,21 @@
     </select>
   </div>
 
-  <form action="/<%= @action %>" method="post">
-    <label for="location">Find the closest shelter to you:</label>
-    <input type="text" name="location" placeholder="Address (i.e. 123 SW Oak St.)"required>
-    <button name="button">Submit</button>
-  </form>
-  <p class="hidden" id="shelterArr"><%= @shelter_arr.join(",") %></p>
+  <div class="resourceContainer">
+    <form action="/<%= @action %>" method="post">
+      <label for="location">Find the closest shelter to you:</label>
+      <input type="text" name="location" placeholder="Address (i.e. 123 SW Oak St.)"required>
+      <button name="button" class="btn">Submit</button>
+    </form>
+    <p class="hidden" id="shelterArr"><%= @shelter_arr.join(",") %></p>
+  </div>
 
-  <form action="/<%= @action %>/shelters" method="post">
-    <label for="shelter">Find a specific shelter:</label>
-    <input type="text" name="shelter" placeholder="Shelter Name (i.e. City Team Ministries)" id="shelterAutoComplete">
-    <button name="button">Submit</button></br></br>
-  </form>
+  <div class="resourceContainer">
+    <form action="/<%= @action %>/shelters" method="post">
+      <label for="shelter">Find a specific shelter:</label>
+      <input type="text" name="shelter" placeholder="Shelter Name (i.e. City Team Ministries)" id="shelterAutoComplete">
+      <button name="button" class="btn">Submit</button></br></br>
+    </form>
+  </div>
 
 </div>
