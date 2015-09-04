@@ -52,13 +52,6 @@ p {
  }
 }
 
-.icon-block {
- padding: 0 15px;
-}
-.icon-block .material-icons {
- font-size: inherit;
-}
-
 footer.page-footer {
  margin: 0;
 }
@@ -88,16 +81,14 @@ html, body {
   color: #068BD1;
 }
 
-.icon-block{
-  text-align:center;
-}
+
 
 .no-margin{
   margin: 0;
 }
 
 .png-icon{
-  width: 15%;
+  width: 14%;
 }
 
 #feature-img{
@@ -107,5 +98,39 @@ html, body {
 }
 
 .parallax-container {
-      height: 30%;
-    }
+  height: 30%;
+}
+
+.description-block {
+ padding: 0 25px;
+ text-align:center;
+}
+
+.icon-block{
+  display: block;
+  height: 75px;
+}
+
+.description-row{
+  padding: 10px 20px;
+}
+
+#support-icon{
+  font-size: 5rem;
+}
+
+body{
+  zoom: 1;
+}
+
+.photo{
+  background-attachment: fixed;
+  background-position: 50% 0;
+  background-repeat: no-repeat;
+  height: 450px;
+  position: relative;
+}
+
+.hitchhiker{
+  background-image: url(/img/hitchhiker.jpeg);
+}
