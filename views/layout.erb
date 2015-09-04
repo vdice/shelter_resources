@@ -26,14 +26,17 @@
         </center>
 
         <ul id="nav-mobile" class="side-nav">
-          <li><a href="">Navbar Link</a></li>
+          <li><a href="/donate">Donate</a></li>
+          <li><a href="/support">Find Support</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Current Events</a></li></li>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
       </div>
     </nav>
     <%= yield %>
   </body>
-  
+
   <!-- vendor js -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
@@ -45,5 +48,15 @@
   <!-- async googlapis call needs to be below js that depends on it -->
   <script async defer
           src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"></script>
+
+<script>
+  (function($){
+  $(function(){
+
+    $('.button-collapse').sideNav();
+
+  }); // end of document ready
+})(jQuery); // end of jQuery name space
+</script>
 
 </html>
