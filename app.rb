@@ -78,9 +78,7 @@ get '/donate' do
   @resources = Resource.all.sort{ |x,y| x.name <=> y.name }
   @shelter_arr = Shelter.all.map{|shelter_obj| shelter_obj.name }
 
-  @route_heading = 'Donate By:'
   @action = 'donate'
-  @find_shelter_string = 'Find Shelters by What They Need:'
   erb :find_by
 end
 
