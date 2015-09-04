@@ -1,13 +1,13 @@
 <div class="container">
   <h4><i class="material-icons">home</i>
     <a target="_blank" href="https://www.google.com/maps/place/<%= @shelter.name().split().join('+') %>">
-      <%= HelperMethod.capitalize_multiple_words(@shelter.name()) %>
+      <%= capitalize(@shelter.name()) %>
     </a>
   </h4>
 
   <h4>
     <i class="material-icons">my_location</i>
-    <%= HelperMethod.capitalize_multiple_words(@shelter.address()) %>
+    <%= capitalize(@shelter.address()) %>
   </h4>
 
   <h4>

@@ -5,3 +5,7 @@
 .btn-block{
   margin: 0 0 20px 0;
 }
+
+.btn-pop:hover {
+  background: rgba(192,192,192,0.2);
+}

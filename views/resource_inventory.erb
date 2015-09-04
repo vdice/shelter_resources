@@ -9,7 +9,9 @@
     </thead>
     <tbody>
       <% @resource.items.each do |item| %>
+        <% shelter = Shelter.find(item.shelter_id()) %>
         <tr>
+          <td><a href="/shelters/<%= shelter.id() %>"><%= capitalize(shelter.name()) %></a></td>
           <td><%= item.quantity%></td>
           <td><%= item.name%></td>
         </tr>

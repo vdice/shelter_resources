@@ -3,21 +3,42 @@
   <h1><%= @route_heading %></h1>
 
   <form action="/<%= @action %>" method="post">
-    <label for="location">Address:</label>
-    <input type="text" name="location" required>
-    <button name="button">Submit</button></br></br>
+    <!-- If HTML5 geolocation enabled, capture current location -->
+    <input type="hidden" id="user_latitude" name='user_latitude' value="">
+    <input type="hidden" id="user_longitude" name='user_longitude' value="">
+
+    <div class="input-field col s6">
+      <i class="material-icons prefix">my_location</i>
+      <input type="text" name="location">
+      <label for="icon_prefix">Optional Location</label>
+    </div>
+    <div class="input-field col s6">
+      <i class="material-icons prefix">home</i>
+      <input type="text" name="shelter" id="shelterAutoComplete">
+      <label for="icon_prefix">Specific Shelter</label>
+    </div>
+
+    <button class="waves-effect waves-light btn">
+      <i class="material-icons">search</i>
+    </button><br><br>
   </form>
   <p class="hidden" id="shelterArr"><%= @shelter_arr.join(",") %></p>
 
-  <form action="/<%= @action %>/shelters" method="post">
-    <label for="shelter">Specific Shelter:</label>
-    <input type="text" name="shelter" id="shelterAutoComplete">
-    <button name="button">Submit</button></br></br>
-  </form>
-
-  <p><%= @find_shelter_string %></p>
-  <% @resources.each do |resource| %>
-    <a href="/resources/<%= resource.id %>" class="btn btn-default btn-lg btn-block"><%= resource.name %></a>
-  <% end %>
+  <p>Or, <%= @find_shelter_string %></p>
+  <div class="row">
+    <% @resources.each do |resource| %>
+    <button class="btn-floating btn-large waves-effect waves-light btn-pop" style="height: 128px; width: 128px;">
+      <a href="/resources/<%= resource.id %>">
+        <img src="/img/<%= resource.name().split().join('_') %>64x64.png" title="<%= capitalize(resource.name()) %>" align="middle">
+      </a>
+    </button>
+    <% end %>
+  </div>
 
 </div>
+
+<script charset="utf-8">
+  window.onload = function() {
+    locateUser();
+  };
+</script>

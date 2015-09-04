@@ -19,11 +19,11 @@
   </h4>
   <div id="shelter_listing">
     <div class="collection">
-      <% @sorted_shelters.each do |shelter| %>
+      <% @shelters.each do |shelter| %>
         <a href="/shelters/<%= shelter[0].id() %>" class="collection-item">
           <i class="material-icons">home</i>
-          <%= HelperMethod.capitalize_multiple_words(shelter[0].name()) %> <strong>at</strong>
-          <%= HelperMethod.capitalize_multiple_words(shelter[0].address()) %> <strong>is</strong>
+          <%= capitalize(shelter[0].name()) %> <strong>at</strong>
+          <%= capitalize(shelter[0].address()) %> <strong>is</strong>
           <%= shelter[1] %> miles away!
           <p class="shelter_name" style="display: none;"><%= shelter[0].name() %></p>
           <p class="lat" style="display: none;"><%= shelter[0].latitude() %></p>
