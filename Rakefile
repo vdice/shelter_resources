@@ -1,13 +1,13 @@
-require 'sinatra/activerecord'
-require 'sinatra/activerecord/rake'
+require('sinatra/activerecord')
+require('sinatra/activerecord/rake')
+require('./lib/shelter.rb')
+require('./lib/item.rb')
+require('./lib/resource.rb')
 
-Dir[File.dirname('__FILE__') + '/lib/*.rb'].each{ |file| require file }
+namespace(:db) do
+  task(:load_config)
 
-namespace :db do
-  task :load_config
-
-  desc "Rebuild database"
-  task :init do
+  task(:init) do
     Rake::Task['db:drop'].execute
     Rake::Task['db:create'].execute
     Rake::Task['db:migrate'].execute
