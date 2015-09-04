@@ -4,3 +4,6 @@ development:
 test:
   adapter: postgresql
   database: shelter_resources_test
+production:
+  adapter: postgresql
+  database: shelter_resources_production
