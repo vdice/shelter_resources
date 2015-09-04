@@ -1,13 +1,14 @@
 <div class="container">
-  <h4><i class="material-icons">home</i>
-    <a target="_blank" href="https://www.google.com/maps/place/<%= @shelter.name().split().join('+') %>">
-      <%= capitalize(@shelter.name()) %>
-    </a>
+  <h4>
+    <i class="material-icons">home</i>
+    <%= capitalize(@shelter.name()) %>
   </h4>
 
   <h4>
     <i class="material-icons">my_location</i>
-    <%= capitalize(@shelter.address()) %>
+    <a target="_blank" href="https://www.google.com/maps/place/<%= @shelter.name().split().join('+') %>">
+      <%= capitalize(@shelter.address()) %>
+    </a>
   </h4>
 
   <h4>
