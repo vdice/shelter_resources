@@ -77,7 +77,11 @@ end
 get '/donate' do
   @resources = Resource.all.sort{ |x,y| x.name <=> y.name }
   @shelter_arr = Shelter.all.map{|shelter_obj| shelter_obj.name }
-  erb :donate
+
+  @route_heading = 'Donate By:'
+  @action = 'donate'
+  @find_shelter_string = 'Find Shelters by What They Need:'
+  erb :find_by
 end
 
 
@@ -90,10 +94,46 @@ end
 get '/support' do
   @resources = Resource.all.sort{ |x,y| x.name <=> y.name }
   @shelter_arr = Shelter.all.map{|shelter_obj| shelter_obj.name }
-  erb :support
+
+  @route_heading = 'Find Support By:'
+  @action = 'support'
+  @find_shelter_string = 'Find Shelters by Resource:'
+  erb :find_by
 end
 
 get '/shelters/:id' do
   @shelter = Shelter.find(params.fetch('id').to_i)
   erb :shelter
+end
+
+post '/support' do
+  shelters = Shelter.all()
+
+  location = params.fetch('location')
+
+  if (location.empty?)
+    # TODO: auto locate user
+  else
+    @geocoded_source = settings.geocoder.geocode(location)
+
+    # calculate distance from source to each shelter
+    with_distance = []
+    shelters.each do |shelter|
+      geocoded_shelter = settings.geocoder.geocode(shelter.address())
+      distance = (geocoded_shelter).distance_to(@geocoded_source).round(2)
+      shelter.latitude=geocoded_shelter.lat
+      shelter.longitude=geocoded_shelter.lng
+      with_distance << [shelter, distance]
+    end
+
+    # sort according to distance (index 1 on with_distance array)
+    @sorted_shelters = with_distance.sort{|a, b| a[1] <=> b[1]}[0...5]
+
+  end
+  erb :locator_results
+end
+
+post '/support/shelters' do
+  @shelter = Shelter.find_by_name(params.fetch('shelter'))
+  redirect("/shelters/#{@shelter.id()}")
 end
