@@ -9,6 +9,7 @@ nav .brand-logo {
  color: #444;
 }
 
+
 .nav-wrapper {
 padding: 0 40px;
 
@@ -97,7 +98,7 @@ html, body {
 }
 
 .png-icon{
-  width: 15%;
+  width: 13%;
 }
 
 #feature-img{
@@ -109,3 +110,8 @@ html, body {
 .parallax-container {
       height: 30%;
     }
+
+/*#secondary-img{
+  display: block;
+  transform: translate3d(-50%, 200px, 0px);
+}*/
