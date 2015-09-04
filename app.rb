@@ -17,12 +17,17 @@ get '/donate' do
   get_find_by_page('donate')
 end
 
+
 get '/support' do
   get_find_by_page('support')
 end
 
 post '/support' do
   resolve_find_query()
+  @route_heading = 'Donate:'
+  @action = 'donate'
+
+  erb :find_by
 end
 
 post '/donate' do
