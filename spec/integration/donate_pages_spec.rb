@@ -1,6 +1,6 @@
 require('spec_helper')
 
-describe('the locator functionality', {:type => :feature}) do
+describe('the donate path', {:type => :feature}) do
   before(:each) do
     @url = '/donate'
   end
@@ -27,8 +27,8 @@ describe('the locator functionality', {:type => :feature}) do
 
       @resource = Resource.create({:name => 'Linens'})
 
-      Item.create({:name => 'towel', :quantity => 1, :resource_id => @resource.id(), :shelter_id => @shelters[0][:shelter].id()})
-      Item.create({:name => 'towel', :quantity => 1, :resource_id => @resource.id(), :shelter_id => @shelters[1][:shelter].id()})
+      @items = [Item.create({:name => 'towel', :quantity => 1, :resource_id => @resource.id(), :shelter_id => @shelters[0][:shelter].id()}),
+                Item.create({:name => 'towel', :quantity => 1, :resource_id => @resource.id(), :shelter_id => @shelters[1][:shelter].id()})]
     end
 
     it('returns a sorted list of shelters based on current address and resource needed') do
@@ -54,6 +54,17 @@ describe('the locator functionality', {:type => :feature}) do
       expect(page).to_not have_content(@shelters[1][:expected_address])
       expect(page).to_not have_content(@shelters[1][:shelter].phone_number())
     end
-  end
 
+    it('takes user to a resource page if a specific resource is selected') do
+      visit(@url)
+      find("#resource_#{@resource.id()}").click
+      expect(page).to have_content(HelperMethod.capitalize_multiple_words(@resource.name()))
+      expect(page).to have_content(@shelters[0][:expected_name])
+      expect(page).to have_content(@shelters[1][:expected_name])
+      expect(page).to have_content(@items[0].name())
+      expect(page).to have_content(@items[0].quantity())
+      expect(page).to have_content(@items[1].name())
+      expect(page).to have_content(@items[1].quantity())
+    end
+  end
 end
