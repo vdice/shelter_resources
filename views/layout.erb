@@ -16,17 +16,17 @@
     <nav class="white" role="navigation">
       <div class="nav-wrapper">
         <a href="/" id="logo-container" class="brand-logo">Xenia</a>
-        <% nav_links = {'/donate' => 'Donate',
-                        '/support' => 'Find Support',
-                        '/#about_us' => 'About Us'} %>
+        <% nav_links = {'donate' => {:path => '/donate', :title => 'Donate'},
+                        'support' => {:path => '/support', :title => 'Find Support'},
+                        'about_us' => {:path => '/#about_us', :title => 'About Us'}} %>
         <ul class="right hide-on-med-and-down">
-          <% nav_links.each() do |path, title| %>
-            <li><a href="<%= path %>"><%= title %></a></li>
+          <% nav_links.each() do |name, link| %>
+            <li><a id="nav_<%= name %>_link" href="<%= link[:path] %>"><%= link[:title] %></a></li>
           <% end %>
         </ul>
         <ul id="nav-mobile" class="side-nav">
-          <% nav_links.each() do |path, title| %>
-            <li><a href="<%= path %>"><%= title %></a></li>
+          <% nav_links.each() do |name, link| %>
+            <li><a id="nav_mobile_<%= name %>_link" href="<%= link[:path] %>"><%= link[:title] %></a></li>
           <% end %>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
