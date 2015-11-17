@@ -2,6 +2,8 @@
 
 ##### _A web app to locate nearby shelters according to resource needed_
 
+![Preview](/public/img/preview.png?raw=true "Preview")
+
 #### By **_Abdul Rahimi, Alisa Colón, Travis Johnston and Vaughn Dice_**
 
 ## Description
